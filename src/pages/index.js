@@ -7,6 +7,7 @@ export default function home() {
       <Countdown/>
       <Head>
         <title>Countdowns</title>
+        <link rel="icon" href="/static/favicon.png" />
       </Head>
     </>
   )
