@@ -37,6 +37,14 @@ export function Countdown() {
   }, [date]);
 
   const handleDateChange = (e) => {
+    const inputDate = new Date(e.target.value);
+    const year = inputDate.getFullYear();
+    
+    // Check if year is more than 4 digits
+    if (year > 9999 || year < 0) {
+      return;
+    }
+
     setDate(e.target.value);
     localStorage.setItem('date', e.target.value);
   };
@@ -55,14 +63,14 @@ export function Countdown() {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-no-repeat bg-center bg-cover relative" style={{ backgroundImage: "url('/static/img/bg.png')" }}>
-      <div className=" w-1/6 p-4 absolute top-4 right-4 backdrop-filter backdrop-blur-lg">
+      <div className="w-2/3 md:w-1/6 p-4 absolute top-4 md:top-4 md:right-4 backdrop-filter backdrop-blur-lg">
         <label className="block text-white text-sm font-apple2mono">
-          Date (mm/dd/yyyy):
+          date
           <input type="date" value={date} onChange={handleDateChange} className="mt-1 w-full p-2 rounded text-black font-apple2mono" />
         </label>
         <label className="block text-white text-sm font-apple2mono mt-2">
-          Description:
-          <input type="text" placeholder="Description" value={desc} onChange={handleDescChange} className="mt-1 w-full p-2 rounded text-black font-apple2mono" />
+          description
+          <input type="text" placeholder={(new Date().getFullYear() + 1)} value={desc} onChange={handleDescChange} className="mt-1 w-full p-2 rounded text-black font-apple2mono" />
         </label>
       </div>
       <div className="text-center">
@@ -72,8 +80,7 @@ export function Countdown() {
         </div>
         <p className="text-sm md:text-2xl text-neutral-400 font-apple2mono mb-8 text-opacity-75">days till {desc || (new Date().getFullYear() + 1)}</p>
       </div>
-      <a href="https://buildspace.so/home" target="_blank" rel="noopener noreferrer" className="absolute bottom-4 right-4 opacity-75 text-white py-1 px-2 rounded text-xs">Design credit: Buildspace</a>
+      <a href="https://buildspace.so/home" target="_blank" rel="noopener noreferrer" className="absolute bottom-4 right-4 opacity-75 text-white py-1 px-2 rounded text-xs">design inspo: buildspace</a>
     </div>
   );
 }
-
