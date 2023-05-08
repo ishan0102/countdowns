@@ -23,9 +23,9 @@ const getInitialValue = (key, defaultValue) => {
 
 export function useCountdown() {
   // Retrieve initial values from localStorage
-  const initialDate = getInitialValue('date', new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0]);
-  const initialDesc = getInitialValue('desc', 'tomorrow');
-  const initialTimezone = getInitialValue('timezone', 'Eastern');
+  const initialDate = getInitialValue('date', (new Date(new Date().getFullYear() + 1, 0, 1)).toISOString().split('T')[0]);
+  const initialDesc = getInitialValue('desc', new Date().getFullYear() + 1);
+  const initialTimezone = getInitialValue('timezone', 'Central');
 
   const [days, setDays] = useState(null);
   const [date, setDate] = useState(initialDate);
