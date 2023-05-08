@@ -35,7 +35,6 @@ export function useCountdown() {
   useEffect(() => {
     const now = new Date();
     const targetDate = new Date(date + 'T00:00:00');
-    console.log(targetDate);
 
     // Offset between UTC and local time
     const offset = now.getTimezoneOffset() * 60 * 1000;
@@ -45,13 +44,13 @@ export function useCountdown() {
     const timezoneDate = new Date(targetInSelectedTimezone.toLocaleString('en-US', { timeZone: timeZones[timezone] }));
     const timezoneOffset = timezoneDate.getTime() - targetInSelectedTimezone.getTime();
 
-    const difference = Math.max(targetDate.getTime() + timezoneOffset - now.getTime(), 0);
+    const difference = Math.max(targetDate.getTime() - timezoneOffset - now.getTime(), 0);
     const initialDaysLeft = difference / (1000 * 60 * 60 * 24);
     setDays(initialDaysLeft);
 
     const interval = setInterval(() => {
       const now = new Date();
-      const difference = Math.max(targetDate.getTime() + timezoneOffset - now.getTime(), 0);
+      const difference = Math.max(targetDate.getTime() - timezoneOffset - now.getTime(), 0);
       const daysLeft = difference / (1000 * 60 * 60 * 24);
       setDays(daysLeft);
     }, 100);
