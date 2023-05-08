@@ -1,58 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useCountdown } from './useCountdown';
 
 export function Countdown() {
-  const [days, setDays] = useState(null);
-  const [date, setDate] = useState('');
-  const [desc, setDesc] = useState('');
-
-  useEffect(() => {
-    const storedDate = localStorage.getItem('date');
-    const storedDesc = localStorage.getItem('desc');
-    if (storedDate) setDate(storedDate);
-    if (storedDesc) setDesc(storedDesc);
-  }, []);
-
-  useEffect(() => {
-    const now = new Date();
-    const centralTimeOffset = new Date().getTimezoneOffset() * 60 * 1000 + 6 * 60 * 60 * 1000;
-    let targetDate;
-    if (date) {
-      targetDate = new Date(date);
-    } else {
-      const currentYear = now.getFullYear();
-      targetDate = new Date(`${currentYear + 1}-01-01T00:00:00Z`);
-    }
-    const difference = Math.max(targetDate - now, 0);
-    const initialDaysLeft = difference / (1000 * 60 * 60 * 24);
-    setDays(initialDaysLeft);
-
-    const interval = setInterval(() => {
-      const now = new Date();
-      const difference = Math.max(targetDate - now, 0);
-      const daysLeft = difference / (1000 * 60 * 60 * 24);
-      setDays(daysLeft);
-    }, 100);
-
-    return () => clearInterval(interval);
-  }, [date]);
-
-  const handleDateChange = (e) => {
-    const inputDate = new Date(e.target.value);
-    const year = inputDate.getFullYear();
-    
-    // Check if year is more than 4 digits
-    if (year > 9999 || year < 0) {
-      return;
-    }
-
-    setDate(e.target.value);
-    localStorage.setItem('date', e.target.value);
-  };
-
-  const handleDescChange = (e) => {
-    setDesc(e.target.value);
-    localStorage.setItem('desc', e.target.value);
-  };
+  const {
+    days,
+    date,
+    desc,
+    timezone,
+    timeZones,
+    handleDateChange,
+    handleDescChange,
+    handleTimezoneChange
+  } = useCountdown();
 
   if (days === null) {
     return null;
@@ -68,9 +26,17 @@ export function Countdown() {
           date
           <input type="date" value={date} onChange={handleDateChange} className="mt-1 w-full p-2 rounded text-black font-apple2mono" />
         </label>
-        <label className="block text-white text-sm font-apple2mono mt-2">
+        <label className="block text-white         text-sm font-apple2mono mt-2">
           description
-          <input type="text" placeholder={(new Date().getFullYear() + 1)} value={desc} onChange={handleDescChange} className="mt-1 w-full p-2 rounded text-black font-apple2mono" />
+          <input type="text" value={desc} onChange={handleDescChange} className="mt-1 w-full p-2 rounded text-black font-apple2mono" />
+        </label>
+        <label className="block text-white text-sm font-apple2mono mt-2">
+          timezone
+          <select value={timezone} onChange={handleTimezoneChange} className="mt-1 w-full p-2 rounded text-black font-apple2mono">
+            {Object.keys(timeZones).map(zone => (
+              <option key={zone} value={zone}>{zone}</option>
+            ))}
+          </select>
         </label>
       </div>
       <div className="text-center">
