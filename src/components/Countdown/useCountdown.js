@@ -25,12 +25,13 @@ export function useCountdown() {
   // Retrieve initial values from localStorage
   const initialDate = getInitialValue('date', (new Date(new Date().getFullYear() + 1, 0, 1)).toISOString().split('T')[0]);
   const initialDesc = getInitialValue('desc', new Date().getFullYear() + 1);
-  const initialTimezone = getInitialValue('timezone', 'central');
+  const initialTimezone = getInitialValue('timezone', 'central (UTC-5)');
 
   const [days, setDays] = useState(null);
   const [date, setDate] = useState(initialDate);
   const [desc, setDesc] = useState(initialDesc);
   const [timezone, setTimezone] = useState(initialTimezone);
+  const [countdownStyle, setCountdownStyle] = useState('fractional');
 
   useEffect(() => {
     const now = new Date();
@@ -57,6 +58,10 @@ export function useCountdown() {
 
     return () => clearInterval(interval);
   }, [date, timezone]);
+
+  const toggleCountdownStyle = () => {
+    setCountdownStyle((prevStyle) => (prevStyle === 'fractional' ? 'traditional' : 'fractional'));
+  };
 
   const handleDateChange = (e) => {
     const inputDate = new Date(e.target.value);
@@ -90,6 +95,8 @@ export function useCountdown() {
     timeZones,
     handleDateChange,
     handleDescChange,
-    handleTimezoneChange
+    handleTimezoneChange,
+    countdownStyle,
+    toggleCountdownStyle,
   };
 }
