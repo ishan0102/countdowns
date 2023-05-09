@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 
 const timeZones = {
-  'eastern': 'America/New_York',
-  'central': 'America/Chicago',
-  'mountain': 'America/Denver',
-  'pacific': 'America/Los_Angeles',
+  'eastern (UTC-4)': 'America/New_York',
+  'central (UTC-5)': 'America/Chicago',
+  'mountain (UTC-6)': 'America/Denver',
+  'pacific (UTC-7)': 'America/Los_Angeles',
 };
 
 // Function to get the initial values from localStorage or set the default values
