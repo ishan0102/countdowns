@@ -26,9 +26,9 @@ export function Countdown() {
       <div className="w-2/3 md:w-1/6 p-4 absolute top-4 md:top-4 md:right-4 backdrop-filter backdrop-blur-lg">
         <label className="block text-white text-sm font-apple2mono">
           date
-          <input type="date" value={date} onChange={handleDateChange} className="mt-1 w-full p-2 rounded text-black font-apple2mono" />
+          <input type="date" value={date} onChange={handleDateChange} className="mt-1 ml-4 md:ml-0 w-full p-2 rounded text-black font-apple2mono" />
         </label>
-        <label className="block text-white         text-sm font-apple2mono mt-2">
+        <label className="block text-white text-sm font-apple2mono mt-2">
           description
           <input type="text" value={desc} onChange={handleDescChange} className="mt-1 w-full p-2 rounded text-black font-apple2mono" />
         </label>
@@ -48,7 +48,8 @@ export function Countdown() {
         </div>
         <p className="text-sm md:text-2xl text-neutral-400 font-apple2mono mb-8 text-opacity-75">days till {desc || (new Date().getFullYear() + 1)}</p>
       </div>
-      <a href="https://buildspace.so/home" target="_blank" rel="noopener noreferrer" className="absolute bottom-4 right-4 opacity-75 text-white py-1 px-2 rounded text-xs">design inspo: buildspace</a>
+      <a href="https://www.ishanshah.me" target="_blank" rel="noopener noreferrer" className="absolute bottom-4 left-4 opacity-75 text-white py-1 px-2 mb-24 md:mb-0 rounded text-xs">built by ishan</a>
+      <a href="https://buildspace.so/home" target="_blank" rel="noopener noreferrer" className="absolute bottom-4 right-4 opacity-75 text-white py-1 px-2 mb-24 md:mb-0 rounded text-xs">inspired by buildspace</a>
     </div>
   );
 }
