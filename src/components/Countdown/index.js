@@ -1,5 +1,7 @@
 import { useCountdown } from './useCountdown';
 
+const DECIMAL_PLACES = 6;
+
 export function Countdown() {
   const {
     days,
@@ -17,7 +19,7 @@ export function Countdown() {
   }
 
   const integerDays = Math.floor(days);
-  const fractionalDays = (days % 1).toFixed(6);
+  const fractionalDays = (days % 1).toFixed(DECIMAL_PLACES);
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-no-repeat bg-center bg-cover relative" style={{ backgroundImage: "url('/static/img/bg.png')" }}>

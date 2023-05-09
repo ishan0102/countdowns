@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 
 const timeZones = {
-  'Eastern': 'America/New_York',
-  'Central': 'America/Chicago',
-  'Mountain': 'America/Denver',
-  'Pacific': 'America/Los_Angeles',
+  'eastern': 'America/New_York',
+  'central': 'America/Chicago',
+  'mountain': 'America/Denver',
+  'pacific': 'America/Los_Angeles',
 };
 
 // Function to get the initial values from localStorage or set the default values
@@ -25,7 +25,7 @@ export function useCountdown() {
   // Retrieve initial values from localStorage
   const initialDate = getInitialValue('date', (new Date(new Date().getFullYear() + 1, 0, 1)).toISOString().split('T')[0]);
   const initialDesc = getInitialValue('desc', new Date().getFullYear() + 1);
-  const initialTimezone = getInitialValue('timezone', 'Central');
+  const initialTimezone = getInitialValue('timezone', 'central');
 
   const [days, setDays] = useState(null);
   const [date, setDate] = useState(initialDate);
@@ -53,7 +53,7 @@ export function useCountdown() {
       const difference = Math.max(targetDate.getTime() - timezoneOffset - now.getTime(), 0);
       const daysLeft = difference / (1000 * 60 * 60 * 24);
       setDays(daysLeft);
-    }, 100);
+    }, 50);
 
     return () => clearInterval(interval);
   }, [date, timezone]);
@@ -63,7 +63,7 @@ export function useCountdown() {
     const year = inputDate.getFullYear();
   
     // Check if year is more than 4 digits
-    if (year > 9999 || year < 0) {
+    if (year > 9999 || year <= 0) {
       return;
     }
   
