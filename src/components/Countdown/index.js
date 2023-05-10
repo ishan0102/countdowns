@@ -43,44 +43,49 @@ export function Countdown() {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-no-repeat bg-center bg-cover relative" style={{ backgroundImage: "url('/static/img/bg.png')" }}>
-      <div className="w-2/3 md:w-1/6 p-4 absolute top-4 md:top-4 md:right-4 backdrop-filter backdrop-blur-lg">
-        <button onClick={() => setIsSettingsOpen(!isSettingsOpen)} className="block md:hidden text-white text-2xl mb-2">
-          ☰
-        </button>
-        <div className={`md:block ${isSettingsOpen ? '' : 'hidden'}`}>
-          <label className="block text-white text-md mb-2 font-apple2mono">
-            set a countdown
-          </label>
-          <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono">
-            date
-            <input type="date" value={date} onChange={handleDateChange} className="mt-1 ml-4 md:ml-0 w-full p-2 rounded text-black font-apple2mono" />
-          </label>
-          <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono mt-2">
-            description
-            <input type="text" value={desc} onChange={handleDescChange} className="mt-1 w-full p-2 rounded text-black font-apple2mono" />
-          </label>
-          <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono mt-2">
-            timezone
-            <TimezoneSelect
-              className="text-black"
-              value={timezone}
-              onChange={handleTimezoneChange}
-            />
-          </label>
-          <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono mt-2">
-            style
-            <Select
-              placeholder="select a style"
-              defaultValue={{ value: 'fractional', label: 'fractional' }}
-              onChange={toggleCountdownStyle}
-              className="mt-1 w-full rounded text-black font-apple2mono"
-              options={[
-                { value: 'fractional', label: 'fractional' },
-                { value: 'traditional', label: 'traditional' },
-              ]}
-            />
-          </label>
-        </div>
+      <div className="absolute top-4 right-4">
+      <button 
+  onClick={() => setIsSettingsOpen(!isSettingsOpen)} 
+  className="block text-white text-xl font-apple2mono focus:outline-none relative transform transition-transform duration-200 hover:scale-105"
+>
+  <span 
+    className="inline-block py-2 px-4 rounded-md bg-gradient-to-r from-teal-500 to-emerald-500 shadow-md transition-all duration-300 ease-in-out hover:from-emerald-500 hover:to-teal-500"
+  >
+    settings
+  </span>
+</button>
+
+      </div>
+      <div className={`absolute w-2/3 md:w-fit top-16 right-4 md:right-4 backdrop-filter backdrop-blur-lg p-4 mt-2 rounded ${isSettingsOpen ? '' : 'hidden'}`}>
+        <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono">
+          date
+          <input type="date" value={date} onChange={handleDateChange} className="mt-1 ml-4 md:ml-0 w-full p-2 rounded text-black font-apple2mono" />
+        </label>
+        <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono mt-2">
+          description
+          <input type="text" value={desc} onChange={handleDescChange} className="mt-1 w-full p-2 rounded text-black font-apple2mono" />
+        </label>
+        <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono mt-2">
+          timezone
+          <TimezoneSelect
+            className="text-black"
+            value={timezone}
+            onChange={handleTimezoneChange}
+          />
+        </label>
+        <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono mt-2">
+          style
+          <Select
+            placeholder="select a style"
+            defaultValue={{ value: 'fractional', label: 'fractional' }}
+            onChange={toggleCountdownStyle}
+            className="mt-1 w-full rounded text-black font-apple2mono"
+            options={[
+              { value: 'fractional', label: 'fractional' },
+              { value: 'traditional', label: 'traditional' },
+            ]}
+          />
+        </label>
       </div>
 
       <div className="text-center">
