@@ -1,4 +1,6 @@
 import { useCountdown } from './useCountdown';
+import TimezoneSelect from 'react-timezone-select'
+import Select from 'react-select'
 
 const DECIMAL_PLACES = 6;
 
@@ -8,7 +10,6 @@ export function Countdown() {
     date,
     desc,
     timezone,
-    timeZones,
     handleDateChange,
     handleDescChange,
     handleTimezoneChange,
@@ -53,18 +54,24 @@ export function Countdown() {
         </label>
         <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono mt-2">
           timezone
-          <select value={timezone} onChange={handleTimezoneChange} className="mt-1 w-full p-2 rounded text-black font-apple2mono">
-            {Object.keys(timeZones).map(zone => (
-              <option key={zone} value={zone}>{zone}</option>
-            ))}
-          </select>
+          <TimezoneSelect
+            className="text-black"
+            value={timezone}
+            onChange={handleTimezoneChange}
+          />
         </label>
         <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono mt-2">
           style
-          <select value={countdownStyle} onChange={toggleCountdownStyle} className="mt-1 w-full p-2 rounded text-black font-apple2mono">
-            <option value="fractional">fractional</option>
-            <option value="traditional">traditional</option>
-          </select>
+          <Select
+            placeholder="select a style"
+            defaultValue={{ value: 'fractional', label: 'fractional' }} // added default value
+            onChange={toggleCountdownStyle}
+            className="mt-1 w-full rounded text-black font-apple2mono"
+            options={[
+              { value: "fractional", label: "fractional" }, // changed to double quotes
+              { value: "traditional", label: "traditional" }, // changed to double quotes
+            ]}
+          />
         </label>
       </div>
 

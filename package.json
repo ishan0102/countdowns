@@ -9,9 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.21.0",
     "next": "13.3.4",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-select": "^5.7.3",
+    "react-timezone-select": "^2.1.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",

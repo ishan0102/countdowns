@@ -1,12 +1,5 @@
 import { useState, useEffect } from 'react';
 
-const timeZones = {
-  'eastern (UTC-4)': 'America/New_York',
-  'central (UTC-5)': 'America/Chicago',
-  'mountain (UTC-6)': 'America/Denver',
-  'pacific (UTC-7)': 'America/Los_Angeles',
-};
-
 // Function to get the initial values from localStorage or set the default values
 const getInitialValue = (key, defaultValue) => {
   if (typeof window !== 'undefined') {
@@ -25,7 +18,7 @@ export function useCountdown() {
   // Retrieve initial values from localStorage
   const initialDate = getInitialValue('date', (new Date(new Date().getFullYear() + 1, 0, 1)).toISOString().split('T')[0]);
   const initialDesc = getInitialValue('desc', new Date().getFullYear() + 1);
-  const initialTimezone = getInitialValue('timezone', 'central (UTC-5)');
+  const initialTimezone = getInitialValue('timezone', Intl.DateTimeFormat().resolvedOptions().timeZone);
 
   const [days, setDays] = useState(null);
   const [date, setDate] = useState(initialDate);
@@ -42,7 +35,7 @@ export function useCountdown() {
 
     // Calculate target date in selected timezone
     const targetInSelectedTimezone = new Date(targetDate.getTime() + offset);
-    const timezoneDate = new Date(targetInSelectedTimezone.toLocaleString('en-US', { timeZone: timeZones[timezone] }));
+    const timezoneDate = new Date(targetInSelectedTimezone.toLocaleString('en-US', { timeZone: timezone }));
     const timezoneOffset = timezoneDate.getTime() - targetInSelectedTimezone.getTime();
 
     const difference = Math.max(targetDate.getTime() - timezoneOffset - now.getTime(), 0);
@@ -82,9 +75,9 @@ export function useCountdown() {
     localStorage.setItem('desc', e.target.value);
   };
 
-  const handleTimezoneChange = (e) => {
-    setTimezone(e.target.value);
-    localStorage.setItem('timezone', e.target.value);
+  const handleTimezoneChange = (timezone) => {
+    setTimezone(timezone.value);
+    localStorage.setItem('timezone', timezone.value);
   };
 
   return {
@@ -92,7 +85,6 @@ export function useCountdown() {
     date,
     desc,
     timezone,
-    timeZones,
     handleDateChange,
     handleDescChange,
     handleTimezoneChange,
