@@ -15,7 +15,7 @@ export function Countdown() {
     handleDescChange,
     handleTimezoneChange,
     countdownStyle,
-    toggleCountdownStyle,
+    handleCountdownStyle,
   } = useCountdown();
 
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
@@ -31,15 +31,24 @@ export function Countdown() {
     const hours = Math.floor((days % 1) * 24);
     const minutes = Math.floor((((days % 1) * 24) % 1) * 60);
     const seconds = Math.round(((((days % 1) * 24) % 1) * 60) % 1 * 60);
+
+    const twoDigitMinutes = String(minutes).padStart(2, '0');
+    const twoDigitSeconds = String(seconds).padStart(2, '0');
+
     return (
       <>
         <span className="text-4xl md:text-6xl">{integerDays}d </span>
         <span className="text-2xl md:text-4xl -ml-3 md:-ml-4 text-neutral-200 text-opacity-75">{hours}h </span>
-        <span className="text-2xl md:text-4xl -ml-3 md:-ml-0 text-neutral-200 text-opacity-75">{minutes}m </span>
-        <span className="text-2xl md:text-4xl -ml-3 md:-ml-0 text-neutral-200 text-opacity-75">{seconds}s</span>
+        <span className="text-2xl md:text-4xl -ml-3 md:-ml-0 text-neutral-200 text-opacity-75">
+          <span className={`${twoDigitMinutes[0] === '0' ? 'text-transparent' : ''}`}>{twoDigitMinutes[0]}</span>{twoDigitMinutes[1]}m 
+        </span>
+        <span className="text-2xl md:text-4xl -ml-3 md:-ml-0 text-neutral-200 text-opacity-75">
+          <span className={`${twoDigitSeconds[0] === '0' ? 'text-transparent' : ''}`}>{twoDigitSeconds[0]}</span>{twoDigitSeconds[1]}s
+        </span>
       </>
     );
   };
+
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-no-repeat bg-center bg-cover relative" style={{ backgroundImage: "url('/static/img/bg.png')" }}>
@@ -48,13 +57,13 @@ export function Countdown() {
           onClick={() => setIsSettingsOpen(!isSettingsOpen)}
           className="block text-white text-xl font-apple2mono focus:outline-none relative transform transition-transform md:duration-200 md:hover:scale-105"
         >
-          <span className="inline-block py-2 px-4 rounded-md bg-gradient-to-r from-teal-500 to-emerald-500 shadow-md transition-all duration-300 ease-in-out hover:from-emerald-500 hover:to-teal-500">
+          <span className="inline-block py-2 px-4 rounded-lg bg-gradient-to-r from-teal-500 to-emerald-500 shadow-md transition-all duration-300 ease-in-out hover:from-emerald-500 hover:to-teal-500">
             settings
           </span>
         </button>
 
       </div>
-      <div className={`absolute w-2/3 md:w-fit top-16 right-4 md:right-4 backdrop-filter backdrop-blur-lg p-4 mt-2 rounded ${isSettingsOpen ? '' : 'hidden'}`}>
+      <div className={`absolute w-2/3 md:w-1/4 top-16 right-4 md:right-4 backdrop-filter backdrop-blur-lg p-4 mt-2 rounded-lg ${isSettingsOpen ? '' : 'hidden'}`}>
         <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono">
           date
           <input type="date" value={date} onChange={handleDateChange} className="mt-1 ml-4 md:ml-0 w-full p-2 rounded text-black font-apple2mono" />
@@ -76,7 +85,7 @@ export function Countdown() {
           <Select
             placeholder="select a style"
             defaultValue={{ value: 'fractional', label: 'fractional' }}
-            onChange={toggleCountdownStyle}
+            onChange={handleCountdownStyle}
             className="mt-1 w-full rounded text-black font-apple2mono"
             options={[
               { value: 'fractional', label: 'fractional' },

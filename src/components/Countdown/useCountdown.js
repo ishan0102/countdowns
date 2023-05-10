@@ -19,12 +19,13 @@ export function useCountdown() {
   const initialDate = getInitialValue('date', (new Date(new Date().getFullYear() + 1, 0, 1)).toISOString().split('T')[0]);
   const initialDesc = getInitialValue('desc', new Date().getFullYear() + 1);
   const initialTimezone = getInitialValue('timezone', Intl.DateTimeFormat().resolvedOptions().timeZone);
+  const initialCountdownStyle = getInitialValue('countdownStyle', 'fractional');
 
   const [days, setDays] = useState(null);
   const [date, setDate] = useState(initialDate);
   const [desc, setDesc] = useState(initialDesc);
   const [timezone, setTimezone] = useState(initialTimezone);
-  const [countdownStyle, setCountdownStyle] = useState('fractional');
+  const [countdownStyle, setCountdownStyle] = useState(initialCountdownStyle);
 
   useEffect(() => {
     const now = new Date();
@@ -59,9 +60,10 @@ export function useCountdown() {
     return () => clearInterval(interval);
   }, [date, timezone]);
 
-  const toggleCountdownStyle = () => {
-    setCountdownStyle((prevStyle) => (prevStyle === 'fractional' ? 'traditional' : 'fractional'));
-  };
+  const handleCountdownStyle = (selectedOption) => {
+    setCountdownStyle(selectedOption.value);
+    localStorage.setItem('countdownStyle', selectedOption.value);
+  };  
 
   const handleDateChange = (e) => {
     const inputDate = new Date(e.target.value);
@@ -96,6 +98,6 @@ export function useCountdown() {
     handleDescChange,
     handleTimezoneChange,
     countdownStyle,
-    toggleCountdownStyle,
+    handleCountdownStyle,
   };
 }
