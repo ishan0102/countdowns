@@ -35,7 +35,14 @@ export function useCountdown() {
 
     // Calculate target date in selected timezone
     const targetInSelectedTimezone = new Date(targetDate.getTime() + offset);
-    const timezoneDate = new Date(targetInSelectedTimezone.toLocaleString('en-US', { timeZone: timezone }));
+    var timezoneDate = new Date(Intl.DateTimeFormat().resolvedOptions().timeZone);
+    try {
+      timezoneDate = new Date(targetInSelectedTimezone.toLocaleString('en-US', { timeZone: timezone }));
+    } catch (e) {
+      console.log('%cError: using an invalid timezone', 'color: red');
+      localStorage.setItem('timezone', Intl.DateTimeFormat().resolvedOptions().timeZone);
+      setTimezone(Intl.DateTimeFormat().resolvedOptions().timeZone);
+    }
     const timezoneOffset = timezoneDate.getTime() - targetInSelectedTimezone.getTime();
 
     const difference = Math.max(targetDate.getTime() - timezoneOffset - now.getTime(), 0);
