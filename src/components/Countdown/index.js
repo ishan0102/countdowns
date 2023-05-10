@@ -33,10 +33,10 @@ export function Countdown() {
     const seconds = Math.round(((((days % 1) * 24) % 1) * 60) % 1 * 60);
     return (
       <>
-        <span className="text-5xl md:text-6xl">{integerDays}d </span>
-        <span className="text-2xl md:text-4xl -ml-6 md:-ml-8 text-neutral-200 text-opacity-75">{hours}h </span>
-        <span className="text-2xl md:text-4xl text-neutral-200 text-opacity-75">{minutes}m </span>
-        <span className="text-2xl md:text-4xl text-neutral-200 text-opacity-75">{seconds}s</span>
+        <span className="text-4xl md:text-6xl">{integerDays}d </span>
+        <span className="text-2xl md:text-4xl -ml-3 md:-ml-4 text-neutral-200 text-opacity-75">{hours}h </span>
+        <span className="text-2xl md:text-4xl -ml-3 md:-ml-0 text-neutral-200 text-opacity-75">{minutes}m </span>
+        <span className="text-2xl md:text-4xl -ml-3 md:-ml-0 text-neutral-200 text-opacity-75">{seconds}s</span>
       </>
     );
   };
@@ -44,16 +44,14 @@ export function Countdown() {
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-no-repeat bg-center bg-cover relative" style={{ backgroundImage: "url('/static/img/bg.png')" }}>
       <div className="absolute top-4 right-4">
-      <button 
-  onClick={() => setIsSettingsOpen(!isSettingsOpen)} 
-  className="block text-white text-xl font-apple2mono focus:outline-none relative transform transition-transform duration-200 hover:scale-105"
->
-  <span 
-    className="inline-block py-2 px-4 rounded-md bg-gradient-to-r from-teal-500 to-emerald-500 shadow-md transition-all duration-300 ease-in-out hover:from-emerald-500 hover:to-teal-500"
-  >
-    settings
-  </span>
-</button>
+        <button
+          onClick={() => setIsSettingsOpen(!isSettingsOpen)}
+          className="block text-white text-xl font-apple2mono focus:outline-none relative transform transition-transform md:duration-200 md:hover:scale-105"
+        >
+          <span className="inline-block py-2 px-4 rounded-md bg-gradient-to-r from-teal-500 to-emerald-500 shadow-md transition-all duration-300 ease-in-out hover:from-emerald-500 hover:to-teal-500">
+            settings
+          </span>
+        </button>
 
       </div>
       <div className={`absolute w-2/3 md:w-fit top-16 right-4 md:right-4 backdrop-filter backdrop-blur-lg p-4 mt-2 rounded ${isSettingsOpen ? '' : 'hidden'}`}>
