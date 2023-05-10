@@ -40,10 +40,10 @@ export function Countdown() {
         <span className="text-4xl md:text-6xl">{integerDays}d </span>
         <span className="text-2xl md:text-4xl -ml-3 md:-ml-4 text-neutral-200 text-opacity-75">{hours}h </span>
         <span className="text-2xl md:text-4xl -ml-3 md:-ml-0 text-neutral-200 text-opacity-75">
-          <span className={`${twoDigitMinutes[0] === '0' ? 'text-transparent' : ''}`}>{twoDigitMinutes[0]}</span>{twoDigitMinutes[1]}m 
+          {twoDigitMinutes}m{' '}
         </span>
         <span className="text-2xl md:text-4xl -ml-3 md:-ml-0 text-neutral-200 text-opacity-75">
-          <span className={`${twoDigitSeconds[0] === '0' ? 'text-transparent' : ''}`}>{twoDigitSeconds[0]}</span>{twoDigitSeconds[1]}s
+          {twoDigitSeconds}s
         </span>
       </>
     );
@@ -104,7 +104,7 @@ export function Countdown() {
             traditionalCountdown()
           )}
         </div>
-        <p className="text-sm md:text-2xl text-neutral-400 text-opacity-75 font-apple2mono mb-8">
+        <p className="text-md md:text-2xl text-neutral-400 text-opacity-75 font-apple2mono mb-8 mt-2">
           {countdownStyle === 'fractional' ? 'days' : ''} till {desc || (new Date().getFullYear() + 1)}
         </p>
       </div>
