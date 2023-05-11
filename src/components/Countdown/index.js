@@ -66,7 +66,7 @@ export function Countdown() {
           </span>
         </button>
       </div>
-      <div className={`absolute w-2/3 md:w-1/4 top-16 right-4 md:right-4 backdrop-filter backdrop-blur-lg p-4 mt-2 rounded-lg ${isSettingsOpen ? '' : 'hidden'}`}>
+      <div className={`absolute w-2/3 md:w-1/4 top-16 right-4 md:right-4 backdrop-filter backdrop-blur-lg p-4 mt-2 rounded-lg z-10 ${isSettingsOpen ? '' : 'hidden'}`}>
         <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono">
           date
           <input type="date" value={date} onChange={handleDateChange} className="mt-1 ml-4 md:ml-0 w-full p-2 rounded text-black font-apple2mono" />
