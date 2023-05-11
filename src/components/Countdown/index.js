@@ -13,11 +13,13 @@ export function Countdown() {
     desc,
     timezone,
     countdownStyle,
+    background,
     handleDateChange,
     handleTimeChange,
     handleDescChange,
     handleTimezoneChange,
     handleCountdownStyle,
+    handleBackgroundChange,
   } = useCountdown();
 
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
@@ -53,7 +55,7 @@ export function Countdown() {
 
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-no-repeat bg-center bg-cover relative" style={{ backgroundImage: "url('/static/img/bg.png')" }}>
+    <div className="flex flex-col items-center justify-center h-screen bg-no-repeat bg-center bg-cover relative" style={{ backgroundImage: `url('/static/img/${background}.png')` }}>
       <div className="absolute top-4 right-4">
         <button
           onClick={() => setIsSettingsOpen(!isSettingsOpen)}
@@ -89,13 +91,24 @@ export function Countdown() {
         <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono mt-2">
           style
           <Select
-            placeholder="select a style"
             defaultValue={{ value: 'fractional', label: 'fractional' }}
             onChange={handleCountdownStyle}
             className="mt-1 w-full rounded text-black font-apple2mono"
             options={[
               { value: 'fractional', label: 'fractional' },
               { value: 'traditional', label: 'traditional' },
+            ]}
+          />
+        </label>
+        <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono mt-2">
+          background
+          <Select
+            defaultValue={{ value: 'build', label: 'build' }}
+            onChange={handleBackgroundChange}
+            className="mt-1 w-full rounded text-black font-apple2mono"
+            options={[
+              { value: 'build', label: 'build' },
+              { value: 'dream', label: 'dream' },
             ]}
           />
         </label>

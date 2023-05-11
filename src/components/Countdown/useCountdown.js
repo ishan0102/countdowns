@@ -21,6 +21,7 @@ export function useCountdown() {
   const initialDesc = getInitialValue('desc', new Date().getFullYear() + 1);
   const initialTimezone = getInitialValue('timezone', Intl.DateTimeFormat().resolvedOptions().timeZone);
   const initialCountdownStyle = getInitialValue('countdownStyle', 'fractional');
+  const initialBackground = getInitialValue('background', 'build');
 
   const [days, setDays] = useState(null);
   const [date, setDate] = useState(initialDate);
@@ -28,6 +29,7 @@ export function useCountdown() {
   const [desc, setDesc] = useState(initialDesc);
   const [timezone, setTimezone] = useState(initialTimezone);
   const [countdownStyle, setCountdownStyle] = useState(initialCountdownStyle);
+  const [background, setBackground] = useState(initialBackground);
 
   useEffect(() => {
     const now = new Date();
@@ -96,6 +98,11 @@ export function useCountdown() {
     localStorage.setItem('countdownStyle', selectedOption.value);
   }; 
 
+  const handleBackgroundChange = (selectedOption) => {
+    setBackground(selectedOption.value);
+    localStorage.setItem('background', selectedOption.value);
+  };
+
   return {
     days,
     date,
@@ -103,10 +110,12 @@ export function useCountdown() {
     desc,
     timezone,
     countdownStyle,
+    background,
     handleDateChange,
     handleTimeChange,
     handleDescChange,
     handleTimezoneChange,
     handleCountdownStyle,
+    handleBackgroundChange,
   };
 }
