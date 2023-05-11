@@ -17,19 +17,21 @@ const getInitialValue = (key, defaultValue) => {
 export function useCountdown() {
   // Retrieve initial values from localStorage
   const initialDate = getInitialValue('date', (new Date(new Date().getFullYear() + 1, 0, 1)).toISOString().split('T')[0]);
+  const initialTime = getInitialValue('time', '00:00');
   const initialDesc = getInitialValue('desc', new Date().getFullYear() + 1);
   const initialTimezone = getInitialValue('timezone', Intl.DateTimeFormat().resolvedOptions().timeZone);
   const initialCountdownStyle = getInitialValue('countdownStyle', 'fractional');
 
   const [days, setDays] = useState(null);
   const [date, setDate] = useState(initialDate);
+  const [time, setTime] = useState(initialTime);
   const [desc, setDesc] = useState(initialDesc);
   const [timezone, setTimezone] = useState(initialTimezone);
   const [countdownStyle, setCountdownStyle] = useState(initialCountdownStyle);
 
   useEffect(() => {
     const now = new Date();
-    const targetDate = new Date(date + 'T00:00:00');
+    const targetDate = new Date(date + 'T' + time + ':00');
 
     // Offset between UTC and local time
     const offset = now.getTimezoneOffset() * 60 * 1000;
@@ -58,12 +60,7 @@ export function useCountdown() {
     }, 50);
 
     return () => clearInterval(interval);
-  }, [date, timezone]);
-
-  const handleCountdownStyle = (selectedOption) => {
-    setCountdownStyle(selectedOption.value);
-    localStorage.setItem('countdownStyle', selectedOption.value);
-  };  
+  }, [date, timezone, time]); 
 
   const handleDateChange = (e) => {
     const inputDate = new Date(e.target.value);
@@ -79,6 +76,11 @@ export function useCountdown() {
     localStorage.setItem('date', e.target.value);
   };
 
+  const handleTimeChange = (e) => {
+    setTime(e.target.value);
+    localStorage.setItem('time', e.target.value);
+  };
+
   const handleDescChange = (e) => {
     setDesc(e.target.value);
     localStorage.setItem('desc', e.target.value);
@@ -89,15 +91,22 @@ export function useCountdown() {
     localStorage.setItem('timezone', timezone.value);
   };
 
+  const handleCountdownStyle = (selectedOption) => {
+    setCountdownStyle(selectedOption.value);
+    localStorage.setItem('countdownStyle', selectedOption.value);
+  }; 
+
   return {
     days,
     date,
+    time,
     desc,
     timezone,
+    countdownStyle,
     handleDateChange,
+    handleTimeChange,
     handleDescChange,
     handleTimezoneChange,
-    countdownStyle,
     handleCountdownStyle,
   };
 }
