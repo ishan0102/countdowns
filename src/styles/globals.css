@@ -4,7 +4,7 @@
 
 @layer base {
     html {
-        @apply max-h-screen overflow-hidden text-base antialiased;
+        @apply max-h-screen text-base antialiased;
     }
 
     /* handles safari overscroll background color */
