@@ -74,7 +74,7 @@ export function Countdown() {
         </label>
         <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono mt-2">
           time
-          <input type="time" value={time} onChange={handleTimeChange} className="mt-1 w-full p-2 rounded text-black font-apple2mono" />
+          <input type="time" value={time} onChange={handleTimeChange} className="mt-1 ml-4 md:ml-0 w-full p-2 rounded text-black font-apple2mono" />
         </label>
         <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono mt-2">
           description
