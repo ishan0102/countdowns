@@ -98,7 +98,7 @@ export function Countdown({
           className="block text-white text-xl font-apple2mono focus:outline-none relative transform transition-transform md:duration-200 md:hover:scale-105"
         >
           <span className="inline-block py-2 px-4 rounded-lg bg-gradient-to-r from-teal-500 to-emerald-500 shadow-md transition-all duration-300 ease-in-out hover:from-indigo-500 hover:to-violet-700">
-            settings
+            customize
           </span>
         </button>
       </div>
