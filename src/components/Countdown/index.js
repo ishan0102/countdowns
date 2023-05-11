@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useCountdown } from './useCountdown';
 import TimezoneSelect from 'react-timezone-select';
 import Select from 'react-select';
@@ -34,6 +34,10 @@ export function Countdown({
   // Settings and share button
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [copyButtonText, setCopyButtonText] = useState('share');
+
+  useEffect(() => {
+    document.title = desc || 'countdowns';
+  }, [desc]);
 
   if (days === null) {
     return null;
