@@ -31,13 +31,30 @@ export function Countdown({
     handleBackgroundChange,
   } = useCountdown(initialDate, initialTime, initialDesc, initialTimezone, initialCountdownStyle, initialBackground);
 
-
+  // Settings and share button
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [copyButtonText, setCopyButtonText] = useState('share');
 
   if (days === null) {
     return null;
   }
 
+  const handleCopy = async () => {
+    try {
+      // Copy the current URL to the clipboard
+      await navigator.clipboard.writeText(window.location.href);
+
+      // Change the button text
+      setCopyButtonText('copied!');
+
+      // Reset the button text after 0.75 seconds
+      setTimeout(() => setCopyButtonText('share'), 750);
+    } catch (err) {
+      console.error('Failed to copy URL: ', err);
+    }
+  };
+
+  // Countdown
   const integerDays = Math.floor(days);
   const fractionalDays = (days % 1).toFixed(DECIMAL_PLACES);
 
@@ -65,18 +82,32 @@ export function Countdown({
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-no-repeat bg-center bg-cover relative" style={{ backgroundImage: `url('/static/img/${background}')` }}>
-      <div className="absolute top-4 right-4">
+      {/* Settings button */}
+      <div className="absolute top-4 left-4">
         <button
           onClick={() => setIsSettingsOpen(!isSettingsOpen)}
           className="block text-white text-xl font-apple2mono focus:outline-none relative transform transition-transform md:duration-200 md:hover:scale-105"
         >
-          <span className="inline-block py-2 px-4 rounded-lg bg-gradient-to-r from-teal-500 to-emerald-500 shadow-md transition-all duration-300 ease-in-out hover:from-emerald-500 hover:to-teal-500">
+          <span className="inline-block py-2 px-4 rounded-lg bg-gradient-to-r from-teal-500 to-emerald-500 shadow-md transition-all duration-300 ease-in-out hover:from-indigo-500 hover:to-violet-700">
             settings
           </span>
         </button>
       </div>
 
-      <div className={`absolute w-2/3 md:w-1/4 top-16 right-4 md:right-4 backdrop-filter backdrop-blur-lg p-4 mt-2 rounded-lg z-10 ${isSettingsOpen ? '' : 'hidden'}`}>
+      {/* Share button */}
+      <div className="absolute top-4 right-4">
+        <button
+          onClick={handleCopy}
+          className="block text-white text-xl font-apple2mono focus:outline-none relative transform transition-transform md:duration-200 md:hover:scale-105"
+        >
+          <span className="inline-block py-2 px-4 rounded-lg bg-gradient-to-r from-teal-500 to-emerald-500 shadow-md transition-all duration-300 ease-in-out hover:from-indigo-500 hover:to-violet-700">
+            {copyButtonText}
+          </span>
+        </button>
+      </div>
+
+      {/* Settings */}
+      <div className={`absolute w-2/3 md:w-1/4 top-16 left-4 md:right-4 backdrop-filter backdrop-blur-lg p-4 mt-2 rounded-lg z-10 ${isSettingsOpen ? '' : 'hidden'}`}>
         <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono">
           date
           <input type="date" value={date} onChange={handleDateChange} className="mt-1 ml-4 md:ml-0 w-full p-2 rounded text-black font-apple2mono" />
