@@ -108,8 +108,13 @@ export function Countdown() {
             className="mt-1 w-full rounded text-black font-apple2mono"
             options={[
               { value: 'forest.gif', label: 'forest.gif' },
-              { value: 'build.png', label: 'build.png' },
-              { value: 'dream.png', label: 'dream.png' },
+              { value: 'dystopian.gif', label: 'dystopian.gif' },
+              { value: 'bedroom.gif', label: 'bedroom.gif' },
+              { value: 'castle.gif', label: 'castle.gif' },
+              { value: 'lofigirl.gif', label: 'lofigirl.gif' },
+              { value: 'overlook.png', label: 'overlook.png' },
+              { value: 'palace.png', label: 'palace.png' },
+              { value: 'star.png', label: 'star.png' },
               { value: 'cityscape.png', label: 'cityscape.png' },
             ]}
           />
