@@ -102,7 +102,7 @@ export function Countdown() {
         <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono mt-2">
           background
           <Select
-            defaultValue={{ value: background, label: background}}
+            defaultValue={{ value: background, label: background }}
             onChange={handleBackgroundChange}
             className="mt-1 w-full rounded text-black font-apple2mono"
             options={[

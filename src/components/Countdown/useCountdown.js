@@ -62,17 +62,17 @@ export function useCountdown() {
     }, 50);
 
     return () => clearInterval(interval);
-  }, [date, timezone, time]); 
+  }, [date, timezone, time]);
 
   const handleDateChange = (e) => {
     const inputDate = new Date(e.target.value);
     const year = inputDate.getFullYear();
-  
+
     // Check if year is more than 4 digits
     if (year > 9999 || year <= 0) {
       return;
     }
-  
+
     // Set the date and store it in local storage
     setDate(e.target.value);
     localStorage.setItem('date', e.target.value);
@@ -96,7 +96,7 @@ export function useCountdown() {
   const handleCountdownStyle = (selectedOption) => {
     setCountdownStyle(selectedOption.value);
     localStorage.setItem('countdownStyle', selectedOption.value);
-  }; 
+  };
 
   const handleBackgroundChange = (selectedOption) => {
     setBackground(selectedOption.value);

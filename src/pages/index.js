@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import Head from 'next/head';
 import Script from 'next/script'
 import { Countdown } from '../components/Countdown'
@@ -5,7 +6,7 @@ import { Countdown } from '../components/Countdown'
 export default function home() {
   return (
     <>
-      <Countdown/>
+      <Countdown />
       <Head>
         <title>countdowns</title>
         <link rel="icon" href="/static/favicon.png" />
@@ -19,8 +20,8 @@ export default function home() {
         />
 
         {/* Global Site Tag (gtag.js) - Google Analytics */}
-        <Script 
-          strategy="afterInteractive" 
+        <Script
+          strategy="afterInteractive"
           src={"https://www.googletagmanager.com/gtag/js?id=G-KJ2KXYRCND"}
         />
         <Script
