@@ -21,7 +21,7 @@ export function useCountdown() {
   const initialDesc = getInitialValue('desc', new Date().getFullYear() + 1);
   const initialTimezone = getInitialValue('timezone', Intl.DateTimeFormat().resolvedOptions().timeZone);
   const initialCountdownStyle = getInitialValue('countdownStyle', 'fractional');
-  const initialBackground = getInitialValue('background', 'build');
+  const initialBackground = getInitialValue('background', 'forest.gif');
 
   const [days, setDays] = useState(null);
   const [date, setDate] = useState(initialDate);
