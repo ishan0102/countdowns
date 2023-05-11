@@ -54,7 +54,6 @@ export function Countdown() {
     );
   };
 
-
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-no-repeat bg-center bg-cover relative" style={{ backgroundImage: `url('/static/img/${background}')` }}>
       <div className="absolute top-4 right-4">
@@ -66,7 +65,6 @@ export function Countdown() {
             settings
           </span>
         </button>
-
       </div>
       <div className={`absolute w-2/3 md:w-1/4 top-16 right-4 md:right-4 backdrop-filter backdrop-blur-lg p-4 mt-2 rounded-lg ${isSettingsOpen ? '' : 'hidden'}`}>
         <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono">
@@ -126,7 +124,7 @@ export function Countdown() {
       </div>
 
       <Draggable bounds="parent">
-        <div className="text-center p-8 mb-24 hover:border-4 hover:rounded-lg hover:cursor-move">
+        <div className="text-center p-2 md:p-8 mb-24 hover:border-4 hover:rounded-lg hover:cursor-move">
           <div className="text-5xl md:text-8xl text-white font-bold font-apple2mono">
             {countdownStyle === 'fractional' ? integerDays : ''}
             {countdownStyle === 'fractional' ? (
