@@ -36,8 +36,13 @@ export function Countdown({
   const [copyButtonText, setCopyButtonText] = useState('share');
 
   useEffect(() => {
-    document.title = desc || 'countdowns';
-  }, [desc]);
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.toString().length === 0) {
+      return;
+    }
+    const descParam = urlParams.get('desc');
+    document.title = descParam || desc || 'countdowns';
+  }, [desc, days]);
 
   if (days === null) {
     return null;
