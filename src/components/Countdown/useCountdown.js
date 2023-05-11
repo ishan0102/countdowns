@@ -14,14 +14,21 @@ const getInitialValue = (key, defaultValue) => {
   return defaultValue;
 };
 
-export function useCountdown() {
-  // Retrieve initial values from localStorage
-  const initialDate = getInitialValue('date', (new Date(new Date().getFullYear() + 1, 0, 1)).toISOString().split('T')[0]);
-  const initialTime = getInitialValue('time', '00:00');
-  const initialDesc = getInitialValue('desc', new Date().getFullYear() + 1);
-  const initialTimezone = getInitialValue('timezone', Intl.DateTimeFormat().resolvedOptions().timeZone);
-  const initialCountdownStyle = getInitialValue('countdownStyle', 'fractional');
-  const initialBackground = getInitialValue('background', 'forest.gif');
+export function useCountdown(
+  initialDate,
+  initialTime,
+  initialDesc,
+  initialTimezone,
+  initialCountdownStyle,
+  initialBackground
+) {
+  // If any initial value is not provided, retrieve it from localStorage
+  initialDate = initialDate || getInitialValue('date', (new Date(new Date().getFullYear() + 1, 0, 1)).toISOString().split('T')[0]);
+  initialTime = initialTime || getInitialValue('time', '00:00');
+  initialDesc = initialDesc || getInitialValue('desc', new Date().getFullYear() + 1);
+  initialTimezone = initialTimezone || getInitialValue('timezone', Intl.DateTimeFormat().resolvedOptions().timeZone);
+  initialCountdownStyle = initialCountdownStyle || getInitialValue('countdownStyle', 'fractional');
+  initialBackground = initialBackground || getInitialValue('background', 'forest.gif');
 
   const [days, setDays] = useState(null);
   const [date, setDate] = useState(initialDate);
@@ -76,31 +83,61 @@ export function useCountdown() {
     // Set the date and store it in local storage
     setDate(e.target.value);
     localStorage.setItem('date', e.target.value);
+
+    // Update the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.set('date', e.target.value);
+    window.history.pushState({}, '', '?' + urlParams.toString());
   };
 
   const handleTimeChange = (e) => {
     setTime(e.target.value);
     localStorage.setItem('time', e.target.value);
+
+    // Update the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.set('time', e.target.value);
+    window.history.pushState({}, '', '?' + urlParams.toString());
   };
 
   const handleDescChange = (e) => {
     setDesc(e.target.value);
     localStorage.setItem('desc', e.target.value);
+
+    // Update the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.set('desc', e.target.value);
+    window.history.pushState({}, '', '?' + urlParams.toString());
   };
 
   const handleTimezoneChange = (timezone) => {
     setTimezone(timezone.value);
     localStorage.setItem('timezone', timezone.value);
+
+    // Update the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.set('timezone', timezone.value);
+    window.history.pushState({}, '', '?' + urlParams.toString());
   };
 
   const handleCountdownStyle = (selectedOption) => {
     setCountdownStyle(selectedOption.value);
     localStorage.setItem('countdownStyle', selectedOption.value);
+
+    // Update the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.set('style', selectedOption.value);
+    window.history.pushState({}, '', '?' + urlParams.toString());
   };
 
   const handleBackgroundChange = (selectedOption) => {
     setBackground(selectedOption.value);
     localStorage.setItem('background', selectedOption.value);
+
+    // Update the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.set('bg', selectedOption.value);
+    window.history.pushState({}, '', '?' + urlParams.toString());
   };
 
   return {

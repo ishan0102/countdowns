@@ -6,7 +6,15 @@ import Draggable from 'react-draggable';
 
 const DECIMAL_PLACES = 6;
 
-export function Countdown() {
+export function Countdown({
+  date: initialDate,
+  time: initialTime,
+  desc: initialDesc,
+  timezone: initialTimezone,
+  countdownStyle: initialCountdownStyle,
+  background: initialBackground,
+}) {
+
   const {
     days,
     date,
@@ -21,7 +29,8 @@ export function Countdown() {
     handleTimezoneChange,
     handleCountdownStyle,
     handleBackgroundChange,
-  } = useCountdown();
+  } = useCountdown(initialDate, initialTime, initialDesc, initialTimezone, initialCountdownStyle, initialBackground);
+
 
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
@@ -66,6 +75,7 @@ export function Countdown() {
           </span>
         </button>
       </div>
+
       <div className={`absolute w-2/3 md:w-1/4 top-16 right-4 md:right-4 backdrop-filter backdrop-blur-lg p-4 mt-2 rounded-lg z-10 ${isSettingsOpen ? '' : 'hidden'}`}>
         <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono">
           date
