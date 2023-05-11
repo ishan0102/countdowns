@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useCountdown } from './useCountdown';
 import TimezoneSelect from 'react-timezone-select';
 import Select from 'react-select';
+import Draggable from 'react-draggable';
 
 const DECIMAL_PLACES = 6;
 
@@ -119,21 +120,27 @@ export function Countdown() {
             ]}
           />
         </label>
+        <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono mt-4">
+          hint: you can move the countdown
+        </label>
       </div>
 
-      <div className="text-center">
-        <div className="text-5xl md:text-8xl text-white font-bold font-apple2mono">
-          {countdownStyle === 'fractional' ? integerDays : ''}
-          {countdownStyle === 'fractional' ? (
-            <span className="text-2xl md:text-4xl text-neutral-200 text-opacity-75 font-normal -ml-2 md:-ml-4">.{fractionalDays.slice(2)}</span>
-          ) : (
-            traditionalCountdown()
-          )}
+      <Draggable bounds="parent">
+        <div className="text-center p-8 mb-24 hover:border-4 hover:rounded-lg hover:cursor-move">
+          <div className="text-5xl md:text-8xl text-white font-bold font-apple2mono">
+            {countdownStyle === 'fractional' ? integerDays : ''}
+            {countdownStyle === 'fractional' ? (
+              <span className="text-2xl md:text-4xl text-neutral-200 text-opacity-75 font-normal -ml-2 md:-ml-4">.{fractionalDays.slice(2)}</span>
+            ) : (
+              traditionalCountdown()
+            )}
+          </div>
+          <p className="text-md md:text-2xl text-neutral-400 text-opacity-75 font-apple2mono">
+            {countdownStyle === 'fractional' ? 'days' : ''} till {desc || (new Date().getFullYear() + 1)}
+          </p>
         </div>
-        <p className="text-md md:text-2xl text-neutral-400 text-opacity-75 font-apple2mono mb-8 mt-2">
-          {countdownStyle === 'fractional' ? 'days' : ''} till {desc || (new Date().getFullYear() + 1)}
-        </p>
-      </div>
+      </Draggable>
+
       <a href="https://www.ishanshah.me" target="_blank" rel="noopener noreferrer" className="absolute bottom-4 left-4 opacity-75 text-white py-1 px-2 rounded text-xs">built by ishan</a>
       <a href="https://buildspace.so/home" target="_blank" rel="noopener noreferrer" className="absolute bottom-4 right-4 opacity-75 text-white py-1 px-2 rounded text-xs">inspired by buildspace</a>
     </div>
