@@ -32,17 +32,18 @@ export default function home() {
       <Head>
         <title>countdowns</title>
         <link rel="icon" href="/static/favicon.png" />
+      </Head>
 
-        {/* Global Site Tag (gtag.js) - Google Analytics */}
-        <Script
-          strategy="afterInteractive"
-          src={"https://www.googletagmanager.com/gtag/js?id=G-KJ2KXYRCND"}
-        />
-        <Script
-          id="gtag-init"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
+      {/* Global Site Tag (gtag.js) - Google Analytics */}
+      <Script
+        strategy="afterInteractive"
+        src={"https://www.googletagmanager.com/gtag/js?id=G-KJ2KXYRCND"}
+      />
+      <Script
+        id="gtag-init"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
@@ -50,9 +51,8 @@ export default function home() {
                 page_path: window.location.pathname,
               });
             `,
-          }}
-        />
-      </Head>
+        }}
+      />
     </>
   )
 }
