@@ -20,6 +20,7 @@ const BACKGROUNDS = [
   { value: 'palace.png', label: 'palace.png' },
   { value: 'star.png', label: 'star.png' },
   { value: 'cityscape.png', label: 'cityscape.png' },
+  { value: 'black.png', label: 'black.png' },
 ];
 
 // Define a reusable Label component
