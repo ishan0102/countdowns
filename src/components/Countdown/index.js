@@ -213,7 +213,7 @@ export function Countdown({
           />
         </Label>
         <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono mt-4">
-          hint: you can move the countdown
+          hints: you can move the countdown. you can also set this as your new tab page.
         </label>
       </div>
 
