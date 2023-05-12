@@ -4,6 +4,32 @@ import TimezoneSelect from 'react-timezone-select';
 import Select from 'react-select';
 import Draggable from 'react-draggable';
 
+// Define repetitive data as constants
+const COUNTDOWN_STYLES = [
+  { value: 'fractional', label: 'fractional' },
+  { value: 'traditional', label: 'traditional' },
+];
+
+const BACKGROUNDS = [
+  { value: 'forest.gif', label: 'forest.gif' },
+  { value: 'dystopian.gif', label: 'dystopian.gif' },
+  { value: 'bedroom.gif', label: 'bedroom.gif' },
+  { value: 'castle.gif', label: 'castle.gif' },
+  { value: 'lofigirl.gif', label: 'lofigirl.gif' },
+  { value: 'overlook.png', label: 'overlook.png' },
+  { value: 'palace.png', label: 'palace.png' },
+  { value: 'star.png', label: 'star.png' },
+  { value: 'cityscape.png', label: 'cityscape.png' },
+];
+
+// Define a reusable Label component
+const Label = ({ text, children }) => (
+  <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono mt-2">
+    {text}
+    {children}
+  </label>
+);
+
 const DECIMAL_PLACES = 6;
 
 export function Countdown({
@@ -14,7 +40,6 @@ export function Countdown({
   countdownStyle: initialCountdownStyle,
   background: initialBackground,
 }) {
-
   const {
     days,
     date,
@@ -112,60 +137,36 @@ export function Countdown({
 
       {/* Settings */}
       <div className={`absolute w-2/3 md:w-1/4 top-16 left-4 md:right-4 backdrop-filter backdrop-blur-lg p-4 mt-2 rounded-lg z-10 ${isSettingsOpen ? '' : 'hidden'}`}>
-        <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono">
-          date
+        <Label text="date">
           <input type="date" value={date} onChange={handleDateChange} className="mt-1 ml-4 md:ml-0 w-full p-2 rounded text-black font-apple2mono" />
-        </label>
-        <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono mt-2">
-          time
+        </Label>
+        <Label text="time">
           <input type="time" value={time} onChange={handleTimeChange} className="mt-1 ml-4 md:ml-0 w-full p-2 rounded text-black font-apple2mono" />
-        </label>
-        <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono mt-2">
-          description
+        </Label>
+        <Label text="description">
           <input type="text" placeholder={new Date().getFullYear() + 1} value={desc} onChange={handleDescChange} className="mt-1 w-full p-2 rounded text-black font-apple2mono" />
-        </label>
-        <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono mt-2">
-          timezone
-          <TimezoneSelect
-            className="text-black"
-            value={timezone}
-            onChange={handleTimezoneChange}
-            isSearchable={true}
-          />
-        </label>
-        <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono mt-2">
-          style
+        </Label>
+        <Label text="timezone">
+          <TimezoneSelect className="text-black" value={timezone} onChange={handleTimezoneChange} isSearchable={true} />
+        </Label>
+        <Label text="style">
           <Select
             defaultValue={{ value: countdownStyle, label: countdownStyle }}
             onChange={handleCountdownStyle}
             className="mt-1 w-full rounded text-black font-apple2mono"
-            options={[
-              { value: 'fractional', label: 'fractional' },
-              { value: 'traditional', label: 'traditional' },
-            ]}
+            options={COUNTDOWN_STYLES}
             isSearchable={false}
           />
-        </label>
-        <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono mt-2">
-          background
+        </Label>
+        <Label text="background">
           <Select
             defaultValue={{ value: background, label: background }}
             onChange={handleBackgroundChange}
             className="mt-1 w-full rounded text-black font-apple2mono"
-            options={[
-              { value: 'forest.gif', label: 'forest.gif' },
-              { value: 'dystopian.gif', label: 'dystopian.gif' },
-              { value: 'bedroom.gif', label: 'bedroom.gif' },
-              { value: 'castle.gif', label: 'castle.gif' },
-              { value: 'lofigirl.gif', label: 'lofigirl.gif' },
-              { value: 'overlook.png', label: 'overlook.png' },
-              { value: 'palace.png', label: 'palace.png' },
-              { value: 'star.png', label: 'star.png' },
-              { value: 'cityscape.png', label: 'cityscape.png' },
-            ]}
+            options={BACKGROUNDS}
             isSearchable={false}
           />
-        </label>
+        </Label>
         <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono mt-4">
           hint: you can move the countdown
         </label>

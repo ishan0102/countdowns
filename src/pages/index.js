@@ -1,22 +1,19 @@
-import { useRouter } from 'next/router'
 import Head from 'next/head';
 import Script from 'next/script'
 import { Countdown } from '../components/Countdown'
 
 export default function home() {
-  const router = useRouter();
-
   if (typeof window === 'undefined') {
     return null;
   }
 
   const urlParams = new URLSearchParams(window.location.search);
-  const date = urlParams.get('date') || localStorage.getItem('date') || '';
-  const time = urlParams.get('time') || localStorage.getItem('time') || '';
-  const desc = urlParams.get('desc') || localStorage.getItem('desc') || '';
-  const timezone = urlParams.get('timezone') || localStorage.getItem('timezone') || '';
-  const countdownStyle = urlParams.get('style') || localStorage.getItem('countdownStyle') || '';
-  const background = urlParams.get('bg') || localStorage.getItem('background') || '';
+  const date = urlParams.get('date') || localStorage.getItem('date') || (new Date(new Date().getFullYear() + 1, 0, 1)).toISOString().split('T')[0];
+  const time = urlParams.get('time') || localStorage.getItem('time') || '00:00';
+  const desc = urlParams.get('desc') || localStorage.getItem('desc') || new Date().getFullYear() + 1;
+  const timezone = urlParams.get('timezone') || localStorage.getItem('timezone') || Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const countdownStyle = urlParams.get('style') || localStorage.getItem('countdownStyle') || 'fractional';
+  const background = urlParams.get('bg') || localStorage.getItem('background') || 'forest.gif';
 
   // Update URL without reloading the page
   history.replaceState(null, null, `?date=${date}&time=${time}&desc=${desc}&timezone=${timezone}&style=${countdownStyle}&bg=${background}`);
@@ -35,14 +32,6 @@ export default function home() {
       <Head>
         <title>countdowns</title>
         <link rel="icon" href="/static/favicon.png" />
-
-        {/* Google AdSense */}
-        <Script
-          id="google-adsense"
-          strategy="afterInteractive"
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3670547524946981"
-          crossOrigin="anonymous"
-        />
 
         {/* Global Site Tag (gtag.js) - Google Analytics */}
         <Script
