@@ -5,14 +5,14 @@ export const useLocalStorage = (key, defaultValue) => {
     if (typeof window !== 'undefined') {
       const saved = window.localStorage.getItem(key);
       if (saved) {
-        return JSON.parse(saved);
+        return saved;
       }
     }
     return defaultValue;
   });
 
   useEffect(() => {
-    window.localStorage.setItem(key, JSON.stringify(value));
+    window.localStorage.setItem(key, value);
   }, [value, key]);
 
   return [value, setValue];
