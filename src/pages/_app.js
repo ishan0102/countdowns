@@ -1,5 +1,6 @@
 import '../styles/globals.css'
 import { DefaultSeo } from 'next-seo'
+import { Analytics } from '@vercel/analytics/react';
 
 const defaultSEO = {
   title: 'countdowns',
@@ -28,6 +29,7 @@ export default function App({ Component, pageProps }) {
     <>
       <DefaultSeo {...defaultSEO} />
       <Component {...pageProps} />
+      <Analytics /> {/* Vercel analytics */}
     </>
   );
 }
