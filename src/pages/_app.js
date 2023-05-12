@@ -12,7 +12,7 @@ const defaultSEO = {
     site_name: 'countdowns',
     images: [
       {
-        url: '/static/thumbnail.png',
+        url: 'https://www.countdowns.live/static/thumbnail.png',
         alt: 'countdowns.live homepage',
       },
     ],
