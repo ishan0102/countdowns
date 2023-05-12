@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useCountdown } from './useCountdown';
 import TimezoneSelect from 'react-timezone-select';
-import Select from 'react-select';
+import Select, { components } from 'react-select';
 import Draggable from 'react-draggable';
 
 // Define repetitive data as constants
@@ -29,6 +29,21 @@ const Label = ({ text, children }) => (
     {children}
   </label>
 );
+
+// Define a custom option component to render images in the dropdown
+const CustomOption = ({ data, ...props }) => (
+  <components.Option {...props}>
+    <div className="flex items-center space-x-2 group">
+      <img
+        src={`/static/img/${data.value}`}
+        alt={data.label}
+        className="w-12 md:w-40 h-auto mr-2"
+      />
+      <span>{data.label}</span>
+    </div>
+  </components.Option>
+);
+
 
 const DECIMAL_PLACES = 6;
 
@@ -193,6 +208,7 @@ export function Countdown({
             className="mt-1 w-full rounded text-black font-apple2mono"
             options={BACKGROUNDS}
             isSearchable={false}
+            components={{ Option: CustomOption }}
           />
         </Label>
         <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono mt-4">
