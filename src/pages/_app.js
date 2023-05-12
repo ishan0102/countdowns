@@ -12,7 +12,7 @@ export default function App({ Component, pageProps }) {
           description: 'Make countdowns and share them with your friends.',
           images: [
             {
-              url: '/static/img/thumbnail.png',
+              url: '/static/thumbnail.png',
               width: 3456,
               height: 1922,
               alt: 'countdowns.live homepage',
