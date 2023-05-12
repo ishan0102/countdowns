@@ -36,12 +36,7 @@ export function Countdown({
   const [copyButtonText, setCopyButtonText] = useState('share');
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.toString().length === 0) {
-      return;
-    }
-    const descParam = urlParams.get('desc');
-    document.title = descParam || desc || 'countdowns';
+    document.title = desc || 'countdowns';
   }, [desc, days]);
 
   if (days === null) {
@@ -127,7 +122,7 @@ export function Countdown({
         </label>
         <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono mt-2">
           description
-          <input type="text" value={desc} onChange={handleDescChange} className="mt-1 w-full p-2 rounded text-black font-apple2mono" />
+          <input type="text" placeholder={new Date().getFullYear() + 1} value={desc} onChange={handleDescChange} className="mt-1 w-full p-2 rounded text-black font-apple2mono" />
         </label>
         <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono mt-2">
           timezone
@@ -135,6 +130,7 @@ export function Countdown({
             className="text-black"
             value={timezone}
             onChange={handleTimezoneChange}
+            isSearchable={true}
           />
         </label>
         <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono mt-2">
@@ -147,6 +143,7 @@ export function Countdown({
               { value: 'fractional', label: 'fractional' },
               { value: 'traditional', label: 'traditional' },
             ]}
+            isSearchable={false}
           />
         </label>
         <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono mt-2">
@@ -166,6 +163,7 @@ export function Countdown({
               { value: 'star.png', label: 'star.png' },
               { value: 'cityscape.png', label: 'cityscape.png' },
             ]}
+            isSearchable={false}
           />
         </label>
         <label className="block text-neutral-200 text-opacity-75 text-sm font-apple2mono mt-4">

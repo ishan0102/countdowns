@@ -6,14 +6,20 @@ import { Countdown } from '../components/Countdown'
 export default function home() {
   const router = useRouter();
 
-  // Parse the URL to get the configuration parameters.
-  const urlParams = new URLSearchParams(router.asPath.split(/\?/)[1]);
-  const date = urlParams.get('date');
-  const time = urlParams.get('time');
-  const desc = urlParams.get('desc');
-  const timezone = urlParams.get('timezone');
-  const countdownStyle = urlParams.get('style');
-  const background = urlParams.get('bg');
+  if (typeof window === 'undefined') {
+    return null;
+  }
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const date = urlParams.get('date') || localStorage.getItem('date') || '';
+  const time = urlParams.get('time') || localStorage.getItem('time') || '';
+  const desc = urlParams.get('desc') || localStorage.getItem('desc') || '';
+  const timezone = urlParams.get('timezone') || localStorage.getItem('timezone') || '';
+  const countdownStyle = urlParams.get('style') || localStorage.getItem('countdownStyle') || '';
+  const background = urlParams.get('bg') || localStorage.getItem('background') || '';
+
+  // Update URL without reloading the page
+  history.replaceState(null, null, `?date=${date}&time=${time}&desc=${desc}&timezone=${timezone}&style=${countdownStyle}&bg=${background}`);
 
   return (
     <>
