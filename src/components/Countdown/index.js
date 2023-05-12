@@ -59,6 +59,8 @@ export function Countdown({
   // Settings and share button
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [copyButtonText, setCopyButtonText] = useState('share');
+  const [copyCount, setCopyCount] = useState(0);
+  const [isCopying, setIsCopying] = useState(false);
 
   useEffect(() => {
     document.title = desc || 'countdowns';
@@ -69,15 +71,41 @@ export function Countdown({
   }
 
   const handleCopy = async () => {
+    if (isCopying) {
+      return;
+    }
+
+    setIsCopying(true);
+
     try {
       // Copy the current URL to the clipboard
       await navigator.clipboard.writeText(window.location.href);
 
-      // Change the button text
-      setCopyButtonText('copied!');
+      // Increase the copy count
+      setCopyCount(copyCount + 1);
+
+      if (copyCount === 0) {
+        setCopyButtonText('copied!');
+      } else if (copyCount === 1) {
+        setCopyButtonText('hey');
+      } else if (copyCount === 2) {
+        setCopyButtonText('sup');
+      } else if (copyCount === 3) {
+        setCopyButtonText('dm me');
+      } else if (copyCount === 4) {
+        setCopyButtonText('ishan0102');
+      } else if (copyCount === 5) {
+        setCopyButtonText('twitter');
+      } else if (copyCount === 6) {
+        setCopyButtonText('bye');
+        setCopyCount(0);
+      }
 
       // Reset the button text after 0.75 seconds
-      setTimeout(() => setCopyButtonText('share'), 750);
+      setTimeout(() => {
+        setCopyButtonText('share');
+        setIsCopying(false);
+      }, 750);
     } catch (err) {
       console.error('Failed to copy URL: ', err);
     }
