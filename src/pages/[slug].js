@@ -34,7 +34,7 @@ const routeConfigs = {
   'newYears': {
     date: getNextOccurrence(1, 1),
     time: '00:00',
-    desc: 'new year\s day',
+    desc: 'new year\'s day',
     style: 'fractional',
     bg: 'forest.gif',
   },

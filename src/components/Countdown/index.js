@@ -245,7 +245,6 @@ export function Countdown({
         </a>
       </div>
 
-
       {/* Inspired by buildspace */}
       <a href="https://buildspace.so/home" target="_blank" rel="noopener noreferrer" className="absolute bottom-4 right-4 opacity-75 text-white py-1 px-2 rounded text-xs">inspired by buildspace</a>
     </div>

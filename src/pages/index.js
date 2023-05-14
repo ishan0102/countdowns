@@ -8,12 +8,12 @@ export default function home() {
   }
 
   const urlParams = new URLSearchParams(window.location.search);
-  const date = urlParams.get('date') || localStorage.getItem('date') || (new Date(new Date().getFullYear() + 1, 0, 1)).toISOString().split('T')[0];
-  const time = urlParams.get('time') || localStorage.getItem('time') || '00:00';
-  const desc = urlParams.get('desc') || localStorage.getItem('desc') || new Date().getFullYear() + 1;
-  const timezone = urlParams.get('timezone') || localStorage.getItem('timezone') || Intl.DateTimeFormat().resolvedOptions().timeZone;
-  const countdownStyle = urlParams.get('style') || localStorage.getItem('countdownStyle') || 'fractional';
-  const background = urlParams.get('bg') || localStorage.getItem('background') || 'forest.gif';
+  const date = urlParams.get('date') || (new Date(new Date().getFullYear() + 1, 0, 1)).toISOString().split('T')[0];
+  const time = urlParams.get('time') || '00:00';
+  const desc = urlParams.get('desc') || new Date().getFullYear() + 1;
+  const timezone = urlParams.get('timezone') || Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const countdownStyle = urlParams.get('style') || 'fractional';
+  const background = urlParams.get('bg') || 'forest.gif';
 
   // Update URL without reloading the page
   history.replaceState(null, null, `?date=${date}&time=${time}&desc=${desc}&timezone=${timezone}&style=${countdownStyle}&bg=${background}`);

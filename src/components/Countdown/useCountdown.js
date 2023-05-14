@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useLocalStorage } from './useLocalStorage';
 import { useUrlParam } from './useUrlParam';
 
 export const useCountdown = (
@@ -11,19 +10,12 @@ export const useCountdown = (
   initialBackground
 ) => {
   const [days, setDays] = useState(null);
-  const [date, setDate] = useLocalStorage('date', initialDate);
-  const [time, setTime] = useLocalStorage('time', initialTime);
-  const [desc, setDesc] = useLocalStorage('desc', initialDesc);
-  const [timezone, setTimezone] = useLocalStorage('timezone', initialTimezone);
-  const [countdownStyle, setCountdownStyle] = useLocalStorage('countdownStyle', initialCountdownStyle);
-  const [background, setBackground] = useLocalStorage('background', initialBackground);
-
-  useUrlParam('date', date);
-  useUrlParam('time', time);
-  useUrlParam('desc', desc);
-  useUrlParam('timezone', timezone);
-  useUrlParam('style', countdownStyle);
-  useUrlParam('bg', background);
+  const [date, setDate] = useUrlParam('date', initialDate);
+  const [time, setTime] = useUrlParam('time', initialTime);
+  const [desc, setDesc] = useUrlParam('desc', initialDesc);
+  const [timezone, setTimezone] = useUrlParam('timezone', initialTimezone);
+  const [countdownStyle, setCountdownStyle] = useUrlParam('style', initialCountdownStyle);
+  const [background, setBackground] = useUrlParam('bg', initialBackground);
 
   useEffect(() => {
     // Calculate difference in days
@@ -44,7 +36,6 @@ export const useCountdown = (
       timezoneDate = new Date(targetInSelectedTimezone.toLocaleString('en-US', { timeZone: timezone }));
     } catch (e) {
       const fallbackTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      localStorage.setItem('timezone', fallbackTimezone);
       setTimezone(fallbackTimezone);
     }
 
