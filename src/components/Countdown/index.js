@@ -103,17 +103,15 @@ export function Countdown({
       if (copyCount === 0) {
         setCopyButtonText('copied!');
       } else if (copyCount === 1) {
-        setCopyButtonText('hey');
+        setCopyButtonText('copied!');
       } else if (copyCount === 2) {
-        setCopyButtonText('sup');
+        setCopyButtonText('copied!');
       } else if (copyCount === 3) {
-        setCopyButtonText('dm me');
+        setCopyButtonText('follow me');
       } else if (copyCount === 4) {
-        setCopyButtonText('ishan0102');
+        setCopyButtonText('on twitter');
       } else if (copyCount === 5) {
-        setCopyButtonText('twitter');
-      } else if (copyCount === 6) {
-        setCopyButtonText('bye');
+        setCopyButtonText('@ishan0102');
         setCopyCount(0);
       }
 
