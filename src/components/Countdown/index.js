@@ -16,6 +16,7 @@ const BACKGROUNDS = [
   { value: 'bedroom.gif', label: 'bedroom.gif' },
   { value: 'castle.gif', label: 'castle.gif' },
   { value: 'lofigirl.gif', label: 'lofigirl.gif' },
+  { value: 'bridge.png', label: 'bridge.png' },
   { value: 'overlook.png', label: 'overlook.png' },
   { value: 'palace.png', label: 'palace.png' },
   { value: 'star.png', label: 'star.png' },
