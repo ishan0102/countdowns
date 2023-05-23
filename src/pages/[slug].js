@@ -20,6 +20,7 @@ const routeKeys = {
   'christmas': 'christmas',
   'xmas': 'christmas',
   'valentines': 'valentines',
+  'monaco': 'monaco',
 }
 
 const routeConfigs = {
@@ -48,7 +49,7 @@ const routeConfigs = {
   'christmas': {
     date: getNextOccurrence(12, 25),
     time: '00:00',
-    desc: 'Christmas Day',
+    desc: 'christmas day',
     style: 'fractional',
     bg: 'castle.gif',
   },
@@ -58,6 +59,14 @@ const routeConfigs = {
     desc: 'valentine\'s day',
     style: 'fractional',
     bg: 'star.png',
+  },
+  'monaco': {
+    date: '2023-05-28',
+    time: '08:00',
+    desc: 'monaco grand prix',
+    timezone: 'America/Chicago',
+    style: 'fractional',
+    bg: 'bridge.png',
   },
 }
 
