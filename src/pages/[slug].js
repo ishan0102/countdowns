@@ -12,7 +12,6 @@ const getNextOccurrence = (month, day) => {
 }
 
 const routeKeys = {
-  'diablo4': 'diablo4',
   'nye': 'newYears',
   'newyear': 'newYears',
   'newyears': 'newYears',
@@ -20,18 +19,9 @@ const routeKeys = {
   'christmas': 'christmas',
   'xmas': 'christmas',
   'valentines': 'valentines',
-  'monaco': 'monaco',
 }
 
 const routeConfigs = {
-  'diablo4': {
-    date: '2023-06-05',
-    time: '18:00',
-    desc: 'diablo 4',
-    timezone: 'America/Chicago',
-    style: 'fractional',
-    bg: 'dystopian.gif',
-  },
   'newYears': {
     date: getNextOccurrence(1, 1),
     time: '00:00',
@@ -59,14 +49,6 @@ const routeConfigs = {
     desc: 'valentine\'s day',
     style: 'fractional',
     bg: 'star.png',
-  },
-  'monaco': {
-    date: '2023-05-28',
-    time: '08:00',
-    desc: 'monaco grand prix',
-    timezone: 'America/Chicago',
-    style: 'fractional',
-    bg: 'bridge.png',
   },
 }
 
