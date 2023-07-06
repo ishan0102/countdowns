@@ -235,12 +235,10 @@ export function Countdown({
       {/* <a href="https://www.ishanshah.me" target="_blank" rel="noopener noreferrer" className="absolute bottom-4 left-4 opacity-75 text-white py-1 px-2 rounded text-xs">built by ishan</a> */}
       {/* Buy me a coffee button */}
       <div className="absolute bottom-4 left-4">
-        <a href="https://bmc.link/ishanshah" target="_blank" rel="noopener noreferrer">
+        <a href="https://github.com/ishan0102/countdowns" target="_blank" rel="noopener noreferrer">
           <button className="block text-white text-sm font-apple2mono focus:outline-none relative transform transition-transform md:duration-200 md:hover:scale-105">
             <span className="inline-block py-1 px-2 rounded-lg bg-gradient-to-r from-amber-500 to-orange-600 shadow-md transition-all duration-300 ease-in-out hover:from-orange-500 hover:to-red-800">
-              buy me
-              <br />
-              a coffee
+              github
             </span>
           </button>
         </a>
