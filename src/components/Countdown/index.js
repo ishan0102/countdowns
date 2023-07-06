@@ -232,8 +232,6 @@ export function Countdown({
         </div>
       </Draggable>
 
-      {/* <a href="https://www.ishanshah.me" target="_blank" rel="noopener noreferrer" className="absolute bottom-4 left-4 opacity-75 text-white py-1 px-2 rounded text-xs">built by ishan</a> */}
-      {/* Buy me a coffee button */}
       <div className="absolute bottom-4 left-4">
         <a href="https://github.com/ishan0102/countdowns" target="_blank" rel="noopener noreferrer">
           <button className="block text-white text-sm font-apple2mono focus:outline-none relative transform transition-transform md:duration-200 md:hover:scale-105">
