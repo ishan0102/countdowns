@@ -235,15 +235,22 @@ export function Countdown({
       <div className="absolute bottom-4 left-4">
         <a href="https://github.com/ishan0102/countdowns" target="_blank" rel="noopener noreferrer">
           <button className="block text-white text-sm font-apple2mono focus:outline-none relative transform transition-transform md:duration-200 md:hover:scale-105">
-            <span className="inline-block py-1 px-2 rounded-lg bg-gradient-to-r from-amber-500 to-orange-600 shadow-md transition-all duration-300 ease-in-out hover:from-orange-500 hover:to-red-800">
+            <span className="inline-block py-1 px-2 rounded-lg bg-gradient-to-r from-teal-500 to-emerald-500 shadow-md transition-all duration-300 ease-in-out hover:from-indigo-500 hover:to-violet-700">
               github
             </span>
           </button>
         </a>
       </div>
 
-      {/* Inspired by buildspace */}
-      <a href="https://buildspace.so/home" target="_blank" rel="noopener noreferrer" className="absolute bottom-4 right-4 opacity-75 text-white py-1 px-2 rounded text-xs">inspired by buildspace</a>
+      <div className="absolute bottom-4 right-4">
+        <a href="https://donate.stripe.com/9AQ4hH7TO2PrfsY4gg" target="_blank" rel="noopener noreferrer">
+          <button className="block text-white text-sm font-apple2mono focus:outline-none relative transform transition-transform md:duration-200 md:hover:scale-105">
+            <span className="inline-block py-1 px-2 rounded-lg bg-gradient-to-r from-amber-500 to-orange-600 shadow-md transition-all duration-300 ease-in-out hover:from-orange-500 hover:to-red-800">
+              donate!
+            </span>
+          </button>
+        </a>
+      </div>
     </div>
   );
 }
