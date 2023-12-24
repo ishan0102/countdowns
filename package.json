@@ -9,17 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-<<<<<<< HEAD
     "next": "^14.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-=======
-    "@supabase/supabase-js": "^2.21.0",
-    "next": "13.3.4",
-    "next-seo": "^6.0.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
->>>>>>> de2feb62833c11dc79f35b5c7dbc088c1ca33a30
     "react-draggable": "^4.4.5",
     "react-select": "^5.7.3",
     "react-timezone-select": "^2.1.1"
