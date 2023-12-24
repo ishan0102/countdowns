@@ -22,7 +22,7 @@
     /* Apple II Mono */
     @font-face {
         font-family: 'apple2mono';
-        src: url('../../public/static/fonts/apple2mono.ttf') format('truetype');
+        src: url('/fonts/apple2mono.ttf') format('truetype');
         font-weight: normal;
         font-style: normal;
     }
