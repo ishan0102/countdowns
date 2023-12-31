@@ -35,7 +35,7 @@ export const CountdownProvider: React.FC<{ children: React.ReactNode }> = ({
   const defaultDate = new Date(
     `${new Date().getFullYear() + 1}-01-01T00:00:00.000Z`
   );
-  const defaultDescription = defaultDate.getFullYear().toString();
+  const defaultDescription = (defaultDate.getFullYear() + 1).toString();
   const defaultTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const defaultStyle = "fractional";
   const defaultBackground = BackgroundOptions[0];
