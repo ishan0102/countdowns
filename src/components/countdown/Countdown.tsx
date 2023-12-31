@@ -8,16 +8,16 @@ export default function Countdown() {
   const { date: until, timezone, description, style } = useCountdown()
 
   const [fractionalTime, setFractionalTime] = useState<number>(
-    daysUntilFractorial(until, timezone)
+    daysUntilFractional(until, timezone)
   )
 
   const [traditionalTime, setTraditionalTime] = useState<string>()
 
   useEffect(() => {
     const updateFactional = setInterval(() => {
-      setFractionalTime(daysUntilFractorial(until, timezone))
+      setFractionalTime(daysUntilFractional(until, timezone))
     }, 100)
-    
+
     const updateTraditional = setInterval(() => {
       const { days, hours, minutes, seconds } = daysUntilTraditional(
         until,
@@ -25,7 +25,7 @@ export default function Countdown() {
       )
       setTraditionalTime(`${days}d ${hours.toString().padStart(2, "0")}h ${minutes.toString().padStart(2, "0")}m ${seconds.toString().padStart(2, "0")}s`)
     }, 100)
-    
+
     return () => {
       clearInterval(updateFactional)
       clearInterval(updateTraditional)
@@ -118,9 +118,9 @@ function getTimezoneOffset(until: Date, timezone: string) {
   return timeDifference
 }
 
-function daysUntilFractorial(until: Date, timezone: string) {
+function daysUntilFractional(until: Date, timezone: string) {
   const timeDifference =
     until.getTime() - getTimezoneOffset(until, timezone) - new Date().getTime()
   const daysFraction = timeDifference / (1000 * 60 * 60 * 24)
-  return Math.round(daysFraction * 1e6) / 1e6
+  return Math.abs(Math.round(daysFraction * 1e6) / 1e6)
 }

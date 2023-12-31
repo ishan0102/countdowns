@@ -1,5 +1,6 @@
 import "@/styles/globals.css";
 import { Metadata } from "next";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "countdowns",
@@ -24,6 +25,30 @@ export const metadata: Metadata = {
   },
 };
 
+{/* Global Site Tag (gtag.js) - Google Analytics */ }
+function GoogleAnalytics() {
+  return <>
+    <Script
+      strategy="afterInteractive"
+      src={"https://www.googletagmanager.com/gtag/js?id=G-KJ2KXYRCND"}
+    />
+    <Script
+      id="gtag-init"
+      strategy="afterInteractive"
+      dangerouslySetInnerHTML={{
+        __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-KJ2KXYRCND', {
+              page_path: window.location.pathname,
+            });
+          `,
+      }}
+    />
+  </>
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -32,6 +57,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body className="h-full">{children}</body>
+      <GoogleAnalytics />
     </html>
   );
 }
