@@ -4,7 +4,7 @@ export default function DonateButton() {
   return (
     <Link
       className="text-neutral-400 absolute bottom-4 transition-colors right-4 z-10 font-apple2mono hover:text-neutral-200"
-      href="https://donate.stripe.com/9AQ4hH7TO2PrfsY4gg"
+      href="https://donate.stripe.com/9AQaEK6A26Dz6kgbII"
       target="_blank"
       rel="noreferrer"
     >
