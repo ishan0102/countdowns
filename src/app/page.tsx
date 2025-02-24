@@ -5,6 +5,7 @@ import DonateButton from "@/components/buttons/DonateButton";
 import GitHubButton from "@/components/buttons/GitHubButton";
 import ShareButton from "@/components/buttons/ShareButton";
 import Countdown from "@/components/countdown/Countdown";
+import SearchBar from "@/components/search/SearchBar";
 import Settings from "@/components/settings/Settings";
 import { CountdownProvider } from "@/hooks/CountdownContext";
 
@@ -14,6 +15,7 @@ export default function Home() {
       <CountdownProvider>
         <Background />
         <Countdown />
+        <SearchBar />
         <Settings />
         <DonateButton />
         <GitHubButton />

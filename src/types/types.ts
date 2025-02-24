@@ -4,6 +4,14 @@ export type BackgroundOption = {
   label: string
 }
 
+export interface Settings {
+  showSearch: boolean;
+}
+
+export const DEFAULT_SETTINGS: Settings = {
+  showSearch: true,
+};
+
 export const BackgroundOptions: BackgroundOption[] = [
   {
     value: "forest.gif",
