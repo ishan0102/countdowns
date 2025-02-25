@@ -7,6 +7,7 @@ import CustomOption from "../select/CustomOption";
 import { BackgroundOptions, CountdownStyles } from "@/types/types";
 import { useCountdown } from "@/hooks/CountdownContext";
 import { useState } from "react";
+import { ITimezone } from "react-timezone-select";
 
 export default function Settings() {
   const {
@@ -20,6 +21,8 @@ export default function Settings() {
     setDescription,
     setStyle,
     setBackground,
+    settings,
+    updateSettings,
   } = useCountdown();
 
   const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -108,7 +111,7 @@ export default function Settings() {
             <TimezoneSelect
               className="text-black text-xs w-full"
               value={timezone}
-              onChange={(timezone) => setTimezone(timezone.value)}
+              onChange={(tz: any) => setTimezone(typeof tz === 'string' ? tz : tz.value)}
               isSearchable={true}
             />
           </Label>
@@ -143,6 +146,18 @@ export default function Settings() {
               components={{ Option: CustomOption }}
             />
           </Label>
+          <Label text="search bar">
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                checked={settings.showSearch}
+                onChange={(e) => updateSettings({ showSearch: e.target.checked })}
+                className="form-checkbox h-4 w-4 text-white rounded border-neutral-400 bg-transparent"
+              />
+              <span className="ml-2 text-xs">Show search bar</span>
+            </div>
+          </Label>
+
           <div className="block text-neutral-300 text-xs font-apple2mono mt-4">
             <span>hints:</span>
             <ul className="list-disc pl-5">

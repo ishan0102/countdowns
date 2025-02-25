@@ -1,6 +1,8 @@
 import {
   BackgroundOption,
-  BackgroundOptions
+  BackgroundOptions,
+  Settings,
+  DEFAULT_SETTINGS
 } from "@/types/types";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, {
@@ -9,22 +11,35 @@ import React, {
   useState
 } from "react";
 
-type CountdownContextState = {
+export interface CountdownContextState {
   date: Date;
   description: string;
   timezone: string;
   style: string;
   background: BackgroundOption;
+  settings: Settings;
+  updateSettings: (newSettings: Partial<Settings>) => void;
   setDate: React.Dispatch<React.SetStateAction<Date>>;
   setDescription: React.Dispatch<React.SetStateAction<string>>;
   setTimezone: React.Dispatch<React.SetStateAction<string>>;
   setStyle: React.Dispatch<React.SetStateAction<string>>;
   setBackground: React.Dispatch<React.SetStateAction<BackgroundOption>>;
-};
+}
 
-const CountdownContext = createContext<CountdownContextState | undefined>(
-  undefined
-);
+const CountdownContext = createContext<CountdownContextState>({
+  date: new Date(),
+  description: "",
+  timezone: "",
+  style: "",
+  background: BackgroundOptions[0],
+  settings: DEFAULT_SETTINGS,
+  updateSettings: () => {},
+  setDate: () => {},
+  setDescription: () => {},
+  setTimezone: () => {},
+  setStyle: () => {},
+  setBackground: () => {},
+});
 
 export const CountdownProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -82,6 +97,11 @@ export const CountdownProvider: React.FC<{ children: React.ReactNode }> = ({
         parseString(searchParams.get("bg") || defaultBackground.value)
     ) || defaultBackground
   );
+  const [settings, setSettings] = useState<Settings>(DEFAULT_SETTINGS);
+
+  const updateSettings = (newSettings: Partial<Settings>) => {
+    setSettings(prev => ({ ...prev, ...newSettings }));
+  };
 
   useEffect(() => {
     const params = new URLSearchParams();
@@ -102,6 +122,8 @@ export const CountdownProvider: React.FC<{ children: React.ReactNode }> = ({
     timezone,
     style,
     background,
+    settings,
+    updateSettings,
     setDate,
     setDescription,
     setTimezone,
