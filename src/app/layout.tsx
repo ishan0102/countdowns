@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "countdowns",
@@ -32,8 +33,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="h-full">
-      <body className="h-full">{children}</body>
-      <Analytics />
+      <body className="h-full">
+        <Suspense>
+          {children}
+        </Suspense>
+        <Analytics />
+      </body>
     </html>
   );
 }
