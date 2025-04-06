@@ -6,10 +6,12 @@ export type BackgroundOption = {
 
 export interface Settings {
   showSearch: boolean;
+  searchProvider: string;
 }
 
 export const DEFAULT_SETTINGS: Settings = {
   showSearch: true,
+  searchProvider: "google",
 };
 
 export const BackgroundOptions: BackgroundOption[] = [
@@ -71,3 +73,5 @@ export const BackgroundOptions: BackgroundOption[] = [
 ]
 
 export const CountdownStyles: string[] = ["fractional", "traditional"]
+
+export const SearchProviders: string[] = ["google", "perplexity"]

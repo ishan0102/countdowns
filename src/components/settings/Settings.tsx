@@ -4,10 +4,9 @@ import TimezoneSelect from "react-timezone-select";
 import Label from "../select/Label";
 import Select from "react-select";
 import CustomOption from "../select/CustomOption";
-import { BackgroundOptions, CountdownStyles } from "@/types/types";
+import { BackgroundOptions, CountdownStyles, SearchProviders } from "@/types/types";
 import { useCountdown } from "@/hooks/CountdownContext";
 import { useState } from "react";
-import { ITimezone } from "react-timezone-select";
 
 export default function Settings() {
   const {
@@ -157,6 +156,23 @@ export default function Settings() {
               <span className="ml-2 text-xs">Show search bar</span>
             </div>
           </Label>
+          {settings.showSearch && (
+            <Label text="search provider">
+              <Select
+                defaultValue={{
+                  value: settings.searchProvider,
+                  label: settings.searchProvider,
+                }}
+                onChange={(option) => option && updateSettings({ searchProvider: option.value })}
+                className="w-full rounded text-black text-xs font-apple2mono"
+                options={SearchProviders.map((provider) => ({
+                  value: provider,
+                  label: provider,
+                }))}
+                isSearchable={false}
+              />
+            </Label>
+          )}
 
           <div className="block text-neutral-300 text-xs font-apple2mono mt-4">
             <span>hints:</span>
