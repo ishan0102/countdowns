@@ -1,12 +1,19 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect, useRef } from "react";
 import { useCountdown } from "@/hooks/CountdownContext";
 import Draggable from "react-draggable";
 
 export default function SearchBarPPLX() {
   const [query, setQuery] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
   const { settings } = useCountdown();
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
 
   const handleSearch = useCallback((e: React.FormEvent) => {
     e.preventDefault();
@@ -40,6 +47,7 @@ export default function SearchBarPPLX() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Plex it..."
+            ref={inputRef}
             className="bg-transparent border border-white/20 rounded px-12 py-2 text-white placeholder-white/50 focus:outline-none focus:border-white/40 hover:cursor-text w-full pr-12 font-apple2mono text-sm"
           />
           <button 
