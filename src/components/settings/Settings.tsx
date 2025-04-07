@@ -47,6 +47,11 @@ export default function Settings() {
     });
   };
 
+  const updateSearchProvider = (value: string) => {
+    updateSettings({ searchProvider: value });
+    localStorage.setItem("searchProvider", value);
+  };
+
   const [visible, setVisible] = useState<boolean>(false);
 
   return (
@@ -164,7 +169,7 @@ export default function Settings() {
                   value: settings.searchProvider,
                   label: settings.searchProvider,
                 }}
-                onChange={(option) => option && updateSettings({ searchProvider: option.value })}
+                onChange={(option) => option && updateSearchProvider(option.value)}
                 className="w-full rounded text-black text-xs font-apple2mono"
                 options={Object.keys(searchProviders).map((provider) => ({
                   value: provider,

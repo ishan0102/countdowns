@@ -5,11 +5,19 @@ import { useCountdown } from "@/hooks/CountdownContext";
 import { searchProviders } from "@/components/search/SearchConfig";
 import Draggable from "react-draggable";
 
-
 export default function SearchBar() {
   const [query, setQuery] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const { settings } = useCountdown();
+  const [currentProvider, setCurrentProvider] = useState(searchProviders[settings.searchProvider]);
+
+  useEffect(() => {
+    const savedProvider = localStorage.getItem("searchProvider");
+    if (savedProvider && searchProviders[savedProvider]) {
+      setCurrentProvider(searchProviders[savedProvider]);
+    }
+    settings.searchProvider = savedProvider || "chatgpt";
+  }, [settings]);
 
   useEffect(() => {
     if (inputRef.current) {
@@ -17,14 +25,12 @@ export default function SearchBar() {
     }
   }, []);
 
-  const provider = searchProviders[settings.searchProvider || "perplexity"];
-
   const handleSearch = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     if (query.trim()) {
-      window.location.href = `${provider.url}?q=${encodeURIComponent(query)}`;
+      window.location.href = `${currentProvider.url}?q=${encodeURIComponent(query)}`;
     }
-  }, [query, provider.url]);
+  }, [query, currentProvider.url]);
 
   if (!settings.showSearch) return null;
 
@@ -35,12 +41,12 @@ export default function SearchBar() {
         className="p-2 bg-black/20 backdrop-blur-md rounded-lg hover:cursor-move w-[90%] md:w-[600px]"
       >
         <div className="relative flex items-center">
-          {provider.icon}
+          {currentProvider.icon}
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder={provider.placeholder}
+            placeholder={currentProvider.placeholder}
             ref={inputRef}
             className="bg-transparent border border-white/20 rounded px-12 py-2 text-white placeholder-white/50 focus:outline-none focus:border-white/40 hover:cursor-text w-full pr-12 font-apple2mono text-sm"
           />
