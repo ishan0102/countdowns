@@ -11,7 +11,7 @@ export interface Settings {
 
 export const DEFAULT_SETTINGS: Settings = {
   showSearch: true,
-  searchProvider: "google",
+  searchProvider: "chatgpt",
 };
 
 export const BackgroundOptions: BackgroundOption[] = [
@@ -73,5 +73,3 @@ export const BackgroundOptions: BackgroundOption[] = [
 ]
 
 export const CountdownStyles: string[] = ["fractional", "traditional"]
-
-export const SearchProviders: string[] = ["google", "perplexity"]

@@ -4,7 +4,8 @@ import TimezoneSelect from "react-timezone-select";
 import Label from "../select/Label";
 import Select from "react-select";
 import CustomOption from "../select/CustomOption";
-import { BackgroundOptions, CountdownStyles, SearchProviders } from "@/types/types";
+import { BackgroundOptions, CountdownStyles } from "@/types/types";
+import { searchProviders } from "@/components/search/SearchConfig";
 import { useCountdown } from "@/hooks/CountdownContext";
 import { useState } from "react";
 
@@ -165,7 +166,7 @@ export default function Settings() {
                 }}
                 onChange={(option) => option && updateSettings({ searchProvider: option.value })}
                 className="w-full rounded text-black text-xs font-apple2mono"
-                options={SearchProviders.map((provider) => ({
+                options={Object.keys(searchProviders).map((provider) => ({
                   value: provider,
                   label: provider,
                 }))}

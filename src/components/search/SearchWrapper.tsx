@@ -1,8 +1,7 @@
 "use client";
 
 import { useCountdown } from "@/hooks/CountdownContext";
-import SearchBarGoogle from "./SearchBarGoogle";
-import SearchBarPPLX from "./SearchBarPPLX";
+import SearchBar from "@/components/search/SearchBar";
 
 export default function SearchWrapper() {
   const { settings } = useCountdown();
@@ -11,9 +10,5 @@ export default function SearchWrapper() {
     return null;
   }
 
-  return settings.searchProvider === "google" ? (
-    <SearchBarGoogle />
-  ) : (
-    <SearchBarPPLX />
-  );
+  return <SearchBar />;
 }
