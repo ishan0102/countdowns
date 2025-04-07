@@ -5,9 +5,9 @@ import Label from "../select/Label";
 import Select from "react-select";
 import CustomOption from "../select/CustomOption";
 import { BackgroundOptions, CountdownStyles } from "@/types/types";
+import { searchProviders } from "@/components/search/SearchConfig";
 import { useCountdown } from "@/hooks/CountdownContext";
 import { useState } from "react";
-import { ITimezone } from "react-timezone-select";
 
 export default function Settings() {
   const {
@@ -45,6 +45,11 @@ export default function Settings() {
       newTime.setHours(hours, minutes);
       return newTime ? newTime : currentDate;
     });
+  };
+
+  const updateSearchProvider = (value: string) => {
+    updateSettings({ searchProvider: value });
+    localStorage.setItem("searchProvider", value);
   };
 
   const [visible, setVisible] = useState<boolean>(false);
@@ -157,6 +162,23 @@ export default function Settings() {
               <span className="ml-2 text-xs">Show search bar</span>
             </div>
           </Label>
+          {settings.showSearch && (
+            <Label text="search provider">
+              <Select
+                defaultValue={{
+                  value: settings.searchProvider,
+                  label: settings.searchProvider,
+                }}
+                onChange={(option) => option && updateSearchProvider(option.value)}
+                className="w-full rounded text-black text-xs font-apple2mono"
+                options={Object.keys(searchProviders).map((provider) => ({
+                  value: provider,
+                  label: provider,
+                }))}
+                isSearchable={false}
+              />
+            </Label>
+          )}
 
           <div className="block text-neutral-300 text-xs font-apple2mono mt-4">
             <span>hints:</span>
