@@ -1,7 +1,6 @@
 "use client";
 
 import Background from "@/components/background/Background";
-import DonateButton from "@/components/buttons/DonateButton";
 import GitHubButton from "@/components/buttons/GitHubButton";
 import ShareButton from "@/components/buttons/ShareButton";
 import Countdown from "@/components/countdown/Countdown";
@@ -17,7 +16,6 @@ export default function Home() {
         <Countdown />
         <SearchBar />
         <Settings />
-        <DonateButton />
         <GitHubButton />
         <ShareButton />
       </CountdownProvider>
