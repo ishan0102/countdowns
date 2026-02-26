@@ -6,10 +6,12 @@ export type BackgroundOption = {
 
 export interface Settings {
   showSearch: boolean;
+  searchProvider: string;
 }
 
 export const DEFAULT_SETTINGS: Settings = {
   showSearch: true,
+  searchProvider: "chatgpt",
 };
 
 export const BackgroundOptions: BackgroundOption[] = [
